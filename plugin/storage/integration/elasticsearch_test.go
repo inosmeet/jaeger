@@ -8,6 +8,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -240,5 +241,7 @@ func (s *ESStorageIntegration) cleanESIndexTemplates(t *testing.T, prefix string
 		_, err := s.client.IndexDeleteTemplate("*").Do(context.Background())
 		require.NoError(t, err)
 	}
+	log.Fatal("Client state: %v", s.client)
+	log.Fatal("Client state v8: %v", s.v8Client)
 	return nil
 }
