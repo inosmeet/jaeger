@@ -241,7 +241,7 @@ func (s *ESStorageIntegration) cleanESIndexTemplates(t *testing.T, prefix string
 		_, err := s.client.IndexDeleteTemplate("*").Do(context.Background())
 		require.NoError(t, err)
 	}
-	log.Fatal("Client state:", s.client)
-	log.Fatal("Client state v8:", s.v8Client)
+	log.Println("Client state:", s.client)
+	log.Println("Client state v8:", s.v8Client)
 	return nil
 }
