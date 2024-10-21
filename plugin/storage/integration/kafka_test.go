@@ -20,6 +20,7 @@ import (
 	"github.com/jaegertracing/jaeger/pkg/config"
 	"github.com/jaegertracing/jaeger/pkg/kafka/consumer"
 	"github.com/jaegertracing/jaeger/pkg/metrics"
+	pkgTestutils "github.com/jaegertracing/jaeger/pkg/testutils"
 	"github.com/jaegertracing/jaeger/plugin/storage/kafka"
 	"github.com/jaegertracing/jaeger/plugin/storage/memory"
 	"github.com/jaegertracing/jaeger/storage/spanstore"
@@ -119,6 +120,7 @@ func (*ingester) FindTraceIDs(context.Context, *spanstore.TraceQueryParameters) 
 }
 
 func TestKafkaStorage(t *testing.T) {
+	pkgTestutils.VerifyGoLeaksOnce(t)
 	SkipUnlessEnv(t, "kafka")
 	s := &KafkaIntegrationTestSuite{}
 	s.initialize(t)
