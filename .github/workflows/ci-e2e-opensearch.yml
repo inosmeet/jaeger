@@ -2,7 +2,7 @@ name: CIT OpenSearch
 
 on:
   push:
-    branches: [main]
+    branches: [main, test-dir-struct]
 
   pull_request:
     branches: [main]

@@ -23,6 +23,7 @@ import (
 
 	"github.com/jaegertracing/jaeger/pkg/config"
 	"github.com/jaegertracing/jaeger/pkg/metrics"
+	"github.com/jaegertracing/jaeger/pkg/testutils"
 	"github.com/jaegertracing/jaeger/plugin/storage/es"
 	"github.com/jaegertracing/jaeger/storage/dependencystore"
 )
@@ -155,6 +156,7 @@ func healthCheck() error {
 }
 
 func testElasticsearchStorage(t *testing.T, allTagsAsFields bool) {
+	testutils.VerifyGoLeaksOnce(t)
 	SkipUnlessEnv(t, "elasticsearch", "opensearch")
 	if err := healthCheck(); err != nil {
 		t.Fatal(err)
@@ -181,6 +183,7 @@ func TestElasticsearchStorage_AllTagsAsObjectFields(t *testing.T) {
 }
 
 func TestElasticsearchStorage_IndexTemplates(t *testing.T) {
+	testutils.VerifyGoLeaksOnce(t)
 	SkipUnlessEnv(t, "elasticsearch", "opensearch")
 	if err := healthCheck(); err != nil {
 		t.Fatal(err)
@@ -209,9 +212,10 @@ func TestElasticsearchStorage_IndexTemplates(t *testing.T) {
 }
 
 func (s *ESStorageIntegration) cleanESIndexTemplates(t *testing.T, prefix string) error {
-	version, err := s.getVersion()
-	require.NoError(t, err)
-	if version > 7 {
+	// version, err := s.getVersion()
+	// require.NoError(t, err)
+	// if version > 7 {
+	if s.v8Client != nil {
 		prefixWithSeparator := prefix
 		if prefix != "" {
 			prefixWithSeparator += "-"
@@ -222,7 +226,8 @@ func (s *ESStorageIntegration) cleanESIndexTemplates(t *testing.T, prefix string
 		require.NoError(t, err)
 		_, err = s.v8Client.Indices.DeleteIndexTemplate(prefixWithSeparator + dependenciesTemplateName)
 		require.NoError(t, err)
-	} else {
+	}
+	if s.client != nil {
 		_, err := s.client.IndexDeleteTemplate("*").Do(context.Background())
 		require.NoError(t, err)
 	}
