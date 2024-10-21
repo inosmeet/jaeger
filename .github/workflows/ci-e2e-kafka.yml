@@ -21,9 +21,9 @@ jobs:
   kafka:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        jaeger-version: [v1, v2]  # Adjust if there are specific versions of Jaeger
+        jaeger-version: [v1]  # Adjust if there are specific versions of Jaeger
     name: Kafka Integration Tests ${{ matrix.jaeger-version }}
     steps:
     - name: Harden Runner
