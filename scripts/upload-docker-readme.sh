@@ -13,13 +13,13 @@ DOCKERHUB_TOKEN=${DOCKERHUB_TOKEN:-}
 dockerhub_repository="meetsoni17/$repo"
 dockerhub_url="https://hub.docker.com/v2/repositories/$dockerhub_repository/"
 
-if [ ! -f "$readme_path" ]; then
-  echo "Warning: the dedicated README file for Docker image $repo was not found at path $readme_path"
+if [ ! -f "$abs_readme_path" ]; then
+  echo "Warning: the dedicated README file for Docker image $repo was not found at path $abs_readme_path"
   echo "It is recommended to have a dedicated README file for each Docker image"
   exit 0
 fi
 
-readme_content=$(<"$readme_path")
+readme_content=$(<"$abs_readme_path")
 
 set +x
 
