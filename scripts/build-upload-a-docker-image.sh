@@ -126,7 +126,7 @@ docker buildx build --output "${PUSHTAG}" ${target_arg} ${base_debug_img_arg} \
 	"${dir_arg}"
 echo "::endgroup::"
 
-bash upload-docker-readme.sh ${component_name} ${dir_arg}/README.md
+bash scripts/upload-docker-readme.sh ${component_name} ${dir_arg}/README.md
 
 echo "Finished building${upload_comment} ${component_name} =============="
 
