@@ -14,7 +14,7 @@ dockerhub_url="https://hub.docker.com/v2/repositories/$dockerhub_repository/"
 if [ ! -f "$readme_path" ]; then
   echo "Warning: the dedicated README file for Docker image $repo was not found at path $readme_path"
   echo "It is recommended to have a dedicated README file for each Docker image"
-  exit 1
+  exit 0
 fi
 
 readme_content=$(<"$readme_path")
