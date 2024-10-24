@@ -2,7 +2,7 @@ name: Build docker images
 
 on:
   push:
-    branches: [main, testing]
+    branches: [main, test-docker]
 
   pull_request:
     branches: [main]
