@@ -5,8 +5,9 @@
 set -euxf -o pipefail
 repo="$1"
 readme_path="$2"
+abs_readme_path=$(realpath "$readme_path")
 echo "REPO: ${repo}"
-echo "READMEPATH: ${readme_path}"
+echo "ABSREADMEPATH: ${abs_readme_path}"
 dockerhub_repository="meetsoni17/$repo"
 dockerhub_url="https://hub.docker.com/v2/repositories/$dockerhub_repository/"
 
