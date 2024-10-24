@@ -8,6 +8,8 @@ readme_path="$2"
 abs_readme_path=$(realpath "$readme_path")
 echo "REPO: ${repo}"
 echo "ABSREADMEPATH: ${abs_readme_path}"
+
+DOCKERHUB_TOKEN=${DOCKERHUB_TOKEN:-}
 dockerhub_repository="meetsoni17/$repo"
 dockerhub_url="https://hub.docker.com/v2/repositories/$dockerhub_repository/"
 
