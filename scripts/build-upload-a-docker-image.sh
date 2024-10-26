@@ -26,7 +26,7 @@ local_test_only='N'
 platforms="linux/amd64"
 namespace="jaegertracing"
 overwrite='N'
-upload_readme='N'
+upload_readme='Y'
 
 while getopts "bc:d:f:hlop:t:" opt; do
 	# shellcheck disable=SC2220 # we don't need a *) case
