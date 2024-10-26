@@ -17,7 +17,7 @@ fi
 repo="$1"
 readme_path="$2"
 abs_readme_path=$(realpath "$readme_path")
-repository="jaegertracing/$repo"
+repository="meetsoni17/$repo"
 
 DOCKERHUB_TOKEN=${DOCKERHUB_TOKEN:?'missing Docker Hub token'}
 QUAY_TOKEN=${QUAY_TOKEN:?'missing Quay token'}
@@ -70,9 +70,9 @@ quay_response=$(curl -s -w "%{http_code}" -X PUT "$quay_url" \
 quay_http_code="${quay_response: -3}"
 quay_response_body="${quay_response:0:${#quay_response}-3}"
 
-if [ "$quay_http_code" -eq 200 ]; then
-  echo "Successfully updated Quay.io README for $repository"
-else
-  echo "Failed to update Quay.io README for $repository with status code $quay_http_code"
-  echo "Full response: $quay_response_body"
-fi
+# if [ "$quay_http_code" -eq 200 ]; then
+#   echo "Successfully updated Quay.io README for $repository"
+# else
+#   echo "Failed to update Quay.io README for $repository with status code $quay_http_code"
+#   echo "Full response: $quay_response_body"
+# fi

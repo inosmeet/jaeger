@@ -2,7 +2,7 @@ name: Build docker images
 
 on:
   push:
-    branches: [main]
+    branches: [main,testing]
 
   pull_request:
     branches: [main]
@@ -49,7 +49,7 @@ jobs:
       run: bash scripts/build-upload-docker-images.sh -D -p linux/amd64
 
     - name: Build and upload all container images
-      if: github.ref_name == 'main'
+      # if: github.ref_name == 'main'
       run: bash scripts/build-upload-docker-images.sh
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
